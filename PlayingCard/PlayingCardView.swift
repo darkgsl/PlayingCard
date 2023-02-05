@@ -13,7 +13,7 @@ class PlayingCardView: UIView {
       setNeedsLayout()
     }
   }
-  var isFAceUp: Bool = true {
+  var isFaceUp: Bool = true {
     didSet {
       setNeedsDisplay()
       setNeedsLayout()
@@ -22,15 +22,22 @@ class PlayingCardView: UIView {
   
   private var cornerString: NSAttributedString {
     centerAttibutedString("\(rankString)\n\(suit)" , fontSize: cornerFontSize )
-    
   }
+  private lazy var upperLeftCornerLabel: UILabel = createCornerLabel()
+  private lazy var lowerRightCornerLabel: UILabel = createCornerLabel()
+  
   required init?(coder: NSCoder) {
     super.init(coder: coder)
     contentMode = .redraw
-    
     backgroundColor = .clear
   }
-    
+  private func createCornerLabel() -> UILabel {
+    let label = UILabel()
+    label.numberOfLines = 0
+    addSubview(label)
+    return label
+  }
+  
     private func centerAttibutedString(_ string: String, fontSize: CGFloat) -> NSAttributedString {
       var font = UIFont.preferredFont(forTextStyle: .body).withSize(fontSize)
       //позволяет увеличивать шрифт для слабовидящих
@@ -42,7 +49,34 @@ class PlayingCardView: UIView {
       let attributes:[NSAttributedString.Key : Any] = [.paragraphStyle : paragrafStyle, .font : font]
       return NSAttributedString(string: string, attributes: attributes)
     }
-
+  private func configureCornerLabel(_ label: UILabel) {
+    label.attributedText = cornerString
+    label.frame.size = CGSize.zero
+    label.sizeToFit()
+    label.isHidden = !isFaceUp
+  }
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setNeedsDisplay()
+        setNeedsLayout()
+        //хотя по идее нужен только  NeedsLayout
+    }
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    
+    configureCornerLabel(upperLeftCornerLabel)
+    upperLeftCornerLabel.frame.origin = bounds.origin.offSet(dx: cornerOffset, dy: cornerOffset)
+    
+      configureCornerLabel(lowerRightCornerLabel)
+      
+      lowerRightCornerLabel.transform = CGAffineTransform.identity
+         // .translatedBy(x: lowerRightCornerLabel.frame.size.height, y: lowerRightCornerLabel.frame.size.height)
+          .rotated(by: CGFloat.pi)
+    lowerRightCornerLabel.frame.origin = CGPoint(x: bounds.maxX, y: bounds.maxY)
+          .offSet(dx: -cornerOffset, dy: -cornerOffset)
+          .offSet(dx: -lowerRightCornerLabel.frame.size.width, dy: -lowerRightCornerLabel.frame.size.height)
+      
+      
+  }
   
   override func draw(_ rect: CGRect) {
     /*

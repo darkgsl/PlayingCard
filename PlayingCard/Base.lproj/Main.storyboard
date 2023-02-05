@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,17 +18,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a2l-VM-CX6" customClass="PlayingCardView" customModule="PlayingCard" customModuleProvider="target">
-                                <rect key="frame" x="16" y="60" width="382" height="786"/>
+                                <rect key="frame" x="16" y="149.5" width="382" height="611"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="750" constant="800" id="g5e-K3-hjU"/>
+                                    <constraint firstAttribute="width" secondItem="a2l-VM-CX6" secondAttribute="height" multiplier="5:8" id="zOr-Ix-i41"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="a2l-VM-CX6" secondAttribute="trailing" constant="16" id="HYb-iC-pUh"/>
-                            <constraint firstItem="a2l-VM-CX6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="R08-DA-QIV"/>
-                            <constraint firstItem="a2l-VM-CX6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="qez-5z-nRU"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="a2l-VM-CX6" secondAttribute="bottom" constant="16" id="qfO-5z-Mys"/>
+                            <constraint firstItem="a2l-VM-CX6" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="GpG-z4-6Xz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="a2l-VM-CX6" secondAttribute="trailing" constant="16" id="HYb-iC-pUh"/>
+                            <constraint firstItem="a2l-VM-CX6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="R08-DA-QIV"/>
+                            <constraint firstItem="a2l-VM-CX6" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="lXc-Oe-Uyn"/>
+                            <constraint firstItem="a2l-VM-CX6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="qez-5z-nRU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="a2l-VM-CX6" secondAttribute="bottom" constant="16" id="qfO-5z-Mys"/>
                         </constraints>
                     </view>
                 </viewController>
